@@ -1,24 +1,41 @@
-<div class="container">
-  <h1 class="logo">
-    <span class="saffron">Bharat</span><span class="green">Search</span><span class="navy"> 🔍</span>
-  </h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BharatSearch – India’s Own Search Engine</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="logo">
+      <span class="saffron">Bharat</span><span class="green">Search</span><span class="navy"> 🔍</span>
+    </h1>
 
-  <input type="text" id="query" placeholder="Search anything Indian..." />
-  <button onclick="search()">Search</button>
+    <input type="text" id="query" placeholder="Search anything Indian..." />
+    <button onclick="search()">Search</button>
 
-  <div class="tabs">
-    <button>🌐 Web</button>
-    <button>📰 News</button>
-    <button>📊 Finance</button>
-    <button>🏛 Gov</button>
-    <button>📄 PDFs</button>
-    <button>🎓 Jobs</button>
+    <div class="tabs">
+      <button>🌐 Web</button>
+      <button>📰 News</button>
+      <button>📊 Finance</button>
+      <button>🏛 Gov</button>
+      <button>📄 PDFs</button>
+      <button>🎓 Jobs</button>
+    </div>
+
+    <div id="aiBox">
+      <input type="text" id="aiQuery" placeholder="Ask BharatAI anything..." />
+      <button onclick="askAI()">Ask</button>
+    </div>
+
+    <div id="results"></div>
   </div>
 
-  <div id="aiBox">
-    <input type="text" id="aiQuery" placeholder="Ask BharatAI anything..." />
-    <button onclick="askAI()">Ask</button>
-  </div>
+  <footer>
+    <p>© 2025 BharatSearch by Krishna VG. All rights reserved.</p>
+  </footer>
 
-  <div id="results"></div>
-</div>
+  <script src="script.js"></script>
+</body>
+</html>
