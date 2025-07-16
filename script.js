@@ -2,7 +2,8 @@ function search() {
   const q = document.getElementById("query").value;
   if (!q) return;
 
-  const url = `https://api.duckduckgo.com/?q=${encodeURIComponent(q)}&format=json&pretty=1`;
+  const proxy = "https://corsproxy.io/?";
+  const url = `${proxy}https://api.duckduckgo.com/?q=${encodeURIComponent(q)}&format=json`;
 
   fetch(url)
     .then(res => res.json())
@@ -13,9 +14,7 @@ function search() {
       if (data.RelatedTopics && data.RelatedTopics.length > 0) {
         data.RelatedTopics.forEach(item => {
           if (item.Text && item.FirstURL) {
-            resultsDiv.innerHTML += `
-              <p><a href="${item.FirstURL}" target="_blank">${item.Text}</a></p>
-            `;
+            resultsDiv.innerHTML += `<p><a href="${item.FirstURL}" target="_blank">${item.Text}</a></p>`;
           }
         });
       } else {
