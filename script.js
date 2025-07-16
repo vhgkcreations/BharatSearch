@@ -1,34 +1,37 @@
 function search() {
-  const q = document.getElementById("query").value;
+  const q = document.getElementById("query").value.trim();
+  const resultsDiv = document.getElementById("results");
+  resultsDiv.innerHTML = "<p>Searching Wikipedia...</p>";
+
   if (!q) return;
 
-  const proxyUrl = "https://api.allorigins.win/get?url=";
-  const targetUrl = `https://api.duckduckgo.com/?q=${encodeURIComponent(q)}&format=json`;
+  const url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(q)}&format=json&origin=*`;
 
-  fetch(proxyUrl + encodeURIComponent(targetUrl))
-    .then(response => {
-      if (response.ok) return response.json();
-      throw new Error("Network response was not ok.");
-    })
+  fetch(url)
+    .then(res => res.json())
     .then(data => {
-      const parsedData = JSON.parse(data.contents);
-      const resultsDiv = document.getElementById("results");
       resultsDiv.innerHTML = "<h3>Results:</h3>";
+      const results = data.query.search;
 
-      if (parsedData.RelatedTopics && parsedData.RelatedTopics.length > 0) {
-        parsedData.RelatedTopics.forEach(item => {
-          if (item.Text && item.FirstURL) {
-            resultsDiv.innerHTML += `
-              <p><a href="${item.FirstURL}" target="_blank">${item.Text}</a></p>
-            `;
-          }
-        });
-      } else {
+      if (results.length === 0) {
         resultsDiv.innerHTML += "<p>No results found.</p>";
+        return;
       }
+
+      results.forEach(item => {
+        const title = item.title;
+        const snippet = item.snippet;
+        const pageUrl = `https://en.wikipedia.org/wiki/${encodeURIComponent(title)}`;
+
+        resultsDiv.innerHTML += `
+          <div style="margin-bottom: 15px;">
+            <a href="${pageUrl}" target="_blank"><strong>${title}</strong></a>
+            <p>${snippet}...</p>
+          </div>
+        `;
+      });
     })
-    .catch(error => {
-      document.getElementById("results").innerHTML =
-        `<p>Error fetching results: ${error.message}</p>`;
+    .catch(err => {
+      resultsDiv.innerHTML = `<p>Error: ${err.message}</p>`;
     });
 }
