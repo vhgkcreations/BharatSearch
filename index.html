@@ -3,39 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BharatSearch – India’s Own Search Engine</title>
+  <title>BharatSearch</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1 class="logo">
-      <span class="saffron">Bharat</span><span class="green">Search</span><span class="navy"> 🔍</span>
-    </h1>
 
-    <input type="text" id="query" placeholder="Search anything Indian..." />
+  <div class="container">
+    <h1>BharatSearch 🔍</h1>
+
+    <!-- ✅ Search input with id="query" -->
+    <input type="text" id="query" placeholder="Search here..." />
     <button onclick="search()">Search</button>
 
-    <div class="tabs">
-      <button>🌐 Web</button>
-      <button>📰 News</button>
-      <button>📊 Finance</button>
-      <button>🏛 Gov</button>
-      <button>📄 PDFs</button>
-      <button>🎓 Jobs</button>
-    </div>
-
-    <div id="aiBox">
-      <input type="text" id="aiQuery" placeholder="Ask BharatAI anything..." />
-      <button onclick="askAI()">Ask</button>
-    </div>
-
+    <!-- ✅ Results display area -->
     <div id="results"></div>
   </div>
 
-  <footer>
-    <p>© 2025 BharatSearch by Krishna VG. All rights reserved.</p>
-  </footer>
-
+  <!-- ✅ Linking your script.js at the bottom -->
   <script src="script.js"></script>
+
 </body>
 </html>
