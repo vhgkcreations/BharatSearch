@@ -26,11 +26,3 @@ function search() {
       document.getElementById("results").innerHTML = `<p>Error fetching results: ${err}</p>`;
     });
 }
-
-
-function askAI() {
-  const aiQ = document.getElementById("aiQuery").value;
-  document.getElementById("results").innerHTML = `
-    <p>🤖 BharatAI says: <strong>${aiQ}</strong> <br />(Answer engine coming soon)</p>
-  `;
-}
